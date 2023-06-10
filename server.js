@@ -33,13 +33,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(fileUpload());
 app.use(express.static(path.join(__dirname,  'client', 'build')))
 
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  })
-);
+app.use(cors());
 
 cloudinary.config({
   cloud_name:process.env.CLOUDINARY_NAME,
