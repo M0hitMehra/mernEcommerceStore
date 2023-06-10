@@ -31,7 +31,7 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(fileUpload());
-app.use(express.static(path.join(__dirname,'.client/build')))
+app.use(express.static(path.join(__dirname,  'client', 'build', 'index.html')))
 
 app.use(
   cors({
