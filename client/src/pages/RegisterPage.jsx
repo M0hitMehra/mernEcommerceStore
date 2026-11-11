@@ -55,13 +55,13 @@ export default function RegisterPage() {
       >
         <div style={{ textAlign: "center", marginBottom: 22 }}>
           <div className="glass-badge badge-violet" style={{ marginBottom: 10 }}>
-            <UserPlus size={13} /> New Account
+            <UserPlus size={13} /> Mohit Store Account
           </div>
-          <h1 className="display-heading gradient-text" style={{ fontSize: "1.9rem" }}>
+          <h1 className="display-heading" style={{ fontSize: "1.8rem", fontWeight: 700 }}>
             Create Your Account
           </h1>
           <p style={{ color: "var(--text-secondary)", fontSize: "0.9rem", marginTop: 6 }}>
-            Join LuminaGlass to shop, save delivery details, and track orders.
+            Join Mohit Store to shop, save delivery details, and track orders.
           </p>
         </div>
 
@@ -75,7 +75,7 @@ export default function RegisterPage() {
               type="text"
               required
               className="glass-input"
-              placeholder="Alex Mercer"
+              placeholder="Mohit Mehra"
               value={form.name}
               onChange={onChange("name")}
             />
@@ -87,7 +87,7 @@ export default function RegisterPage() {
               type="email"
               required
               className="glass-input"
-              placeholder="alex@example.com"
+              placeholder="you@example.com"
               value={form.email}
               onChange={onChange("email")}
             />
@@ -156,7 +156,7 @@ export default function RegisterPage() {
           }}
         >
           Already have an account?{" "}
-          <Link to="/login" style={{ color: "var(--accent-cyan)", fontWeight: 600 }}>
+          <Link to="/login" style={{ color: "var(--accent)", fontWeight: 600 }}>
             Sign in
           </Link>
         </div>

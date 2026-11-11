@@ -73,18 +73,18 @@ export default function CategoryProductsPage() {
           <ArrowLeft size={14} /> All Categories
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <Layers size={22} color="#38bdf8" />
-          <h1 className="display-heading gradient-text" style={{ fontSize: "2rem" }}>
+          <Layers size={21} style={{ color: "var(--accent)" }} />
+          <h1 className="display-heading" style={{ fontSize: "2rem", fontWeight: 700 }}>
             {category?.name || slug}
           </h1>
         </div>
         <p style={{ color: "var(--text-secondary)", margin: "6px 0 0" }}>
-          {meta.filteredProductsCount} product(s) available in this category.
+          {meta.filteredProductsCount} product(s) available in this collection.
         </p>
       </div>
 
       {error && (
-        <div className="glass-card" style={{ padding: 20, color: "#fecdd3" }}>
+        <div className="glass-card" style={{ padding: 20, color: "var(--danger)" }}>
           {error}
         </div>
       )}

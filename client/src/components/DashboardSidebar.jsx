@@ -20,14 +20,14 @@ export function UserSidebar() {
       <div
         style={{
           padding: "8px 12px 12px",
-          fontSize: "0.75rem",
+          fontSize: "0.74rem",
           fontWeight: 700,
           textTransform: "uppercase",
-          letterSpacing: "0.08em",
+          letterSpacing: "0.06em",
           color: "var(--text-muted)",
         }}
       >
-        Customer Portal
+        Account
       </div>
       <nav style={{ display: "flex", flexDirection: "column", gap: 6 }}>
         {links.map((item) => {
@@ -79,11 +79,11 @@ export function AdminSidebar() {
       <div
         style={{
           padding: "8px 12px 12px",
-          fontSize: "0.75rem",
+          fontSize: "0.74rem",
           fontWeight: 700,
           textTransform: "uppercase",
-          letterSpacing: "0.08em",
-          color: "var(--accent-cyan)",
+          letterSpacing: "0.06em",
+          color: "var(--accent)",
         }}
       >
         Admin Studio

@@ -55,23 +55,16 @@ export default function SearchPage() {
         <div className="glass-badge badge-cyan" style={{ marginBottom: 10 }}>
           <Search size={13} /> Search Results
         </div>
-        <h1 className="display-heading" style={{ fontSize: "1.9rem" }}>
-          {keyword ? (
-            <>
-              Results for <span className="gradient-text">"{keyword}"</span>
-            </>
-          ) : (
-            "All Catalog Products"
-          )}
+        <h1 className="display-heading" style={{ fontSize: "1.9rem", fontWeight: 700 }}>
+          {keyword ? `Results for "${keyword}"` : "All Mohit Store Products"}
         </h1>
         <p style={{ color: "var(--text-secondary)", margin: "6px 0 0" }}>
-          Found {meta.filteredProductsCount} matching item(s). Numeric queries
-          automatically match products within ±10% of that price.
+          Found {meta.filteredProductsCount} matching item(s).
         </p>
       </div>
 
       {error && (
-        <div className="glass-card" style={{ padding: 20, color: "#fecdd3" }}>
+        <div className="glass-card" style={{ padding: 20, color: "var(--danger)" }}>
           {error}
         </div>
       )}
@@ -86,10 +79,10 @@ export default function SearchPage() {
         <div className="glass-surface" style={{ padding: 48, textAlign: "center" }}>
           <h3 className="display-heading">No products matched your query</h3>
           <p style={{ color: "var(--text-muted)", margin: "8px 0 20px" }}>
-            Try another keyword or return to the full storefront.
+            Try another keyword or return to Mohit Store.
           </p>
           <Link to="/" className="glass-btn glass-btn-primary">
-            Back to Shop
+            Back to Store
           </Link>
         </div>
       ) : (

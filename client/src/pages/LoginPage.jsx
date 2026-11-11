@@ -44,17 +44,14 @@ export default function LoginPage() {
     >
       <div
         className="glass-surface"
-        style={{ width: "100%", maxWidth: 440, padding: "34px 30px" }}
+        style={{ width: "100%", maxWidth: 430, padding: "34px 30px" }}
       >
         <div style={{ textAlign: "center", marginBottom: 24 }}>
-          <div
-            className="glass-badge badge-cyan"
-            style={{ marginBottom: 12 }}
-          >
-            <LogIn size={13} /> Welcome Back
+          <div className="glass-badge badge-cyan" style={{ marginBottom: 12 }}>
+            <LogIn size={13} /> Mohit Store ID
           </div>
-          <h1 className="display-heading gradient-text" style={{ fontSize: "1.9rem" }}>
-            Sign In to LuminaGlass
+          <h1 className="display-heading" style={{ fontSize: "1.8rem", fontWeight: 700 }}>
+            Sign in to Mohit Store
           </h1>
           <p style={{ color: "var(--text-secondary)", fontSize: "0.9rem", marginTop: 6 }}>
             Access your orders, address, and fast checkout.
@@ -69,7 +66,7 @@ export default function LoginPage() {
             <label className="glass-label">Email Address</label>
             <div style={{ position: "relative" }}>
               <Mail
-                size={16}
+                size={15}
                 style={{
                   position: "absolute",
                   left: 13,
@@ -103,7 +100,7 @@ export default function LoginPage() {
                 to="/forgot-password"
                 style={{
                   fontSize: "0.78rem",
-                  color: "var(--accent-cyan)",
+                  color: "var(--accent)",
                   marginBottom: 6,
                 }}
               >
@@ -112,7 +109,7 @@ export default function LoginPage() {
             </div>
             <div style={{ position: "relative" }}>
               <Lock
-                size={16}
+                size={15}
                 style={{
                   position: "absolute",
                   left: 13,
@@ -152,7 +149,7 @@ export default function LoginPage() {
           }}
         >
           New here?{" "}
-          <Link to="/register" style={{ color: "var(--accent-cyan)", fontWeight: 600 }}>
+          <Link to="/register" style={{ color: "var(--accent)", fontWeight: 600 }}>
             Create an account
           </Link>
         </div>

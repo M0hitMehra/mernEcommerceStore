@@ -1,17 +1,29 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LuminaGlass — Curated Commerce</title>
+    <title>Mohit Store</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/assets/index-9olrIZMr.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Bejq0yXl.css">
+    <script>
+      try {
+        var saved = localStorage.getItem("mohit_store_theme");
+        var preferred =
+          saved ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        document.documentElement.setAttribute("data-theme", preferred);
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/assets/index-B_GHUwOr.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Dj0FkN4F.css">
   </head>
   <body>
     <div id="root"></div>

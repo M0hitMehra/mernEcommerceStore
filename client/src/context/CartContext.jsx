@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 
 const CartContext = createContext(null);
-const STORAGE_KEY = "luminaglass_cart_v1";
+const STORAGE_KEY = "mohit_store_cart_v1";
 
 function loadInitialCart() {
   try {

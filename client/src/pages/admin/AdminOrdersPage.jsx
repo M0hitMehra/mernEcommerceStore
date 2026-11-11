@@ -97,7 +97,7 @@ export default function AdminOrdersPage() {
                     alignItems: "center",
                     gap: 12,
                     paddingBottom: 12,
-                    borderBottom: "1px solid rgba(255,255,255,0.1)",
+                    borderBottom: "1px solid var(--glass-hairline)",
                   }}
                 >
                   <div>

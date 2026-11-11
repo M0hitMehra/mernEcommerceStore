@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ShoppingBag, Eye, Truck } from "lucide-react";
+import { ShoppingBag, Truck } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import { formatPrice } from "../utils/format";
 
@@ -18,7 +18,7 @@ export default function ProductCard({ product }) {
         height: "100%",
       }}
     >
-      {/* Image */}
+      {/* Image Stage */}
       <Link
         to={`/product/${product.slug}`}
         style={{
@@ -26,9 +26,8 @@ export default function ProductCard({ product }) {
           display: "block",
           aspectRatio: "4 / 3",
           overflow: "hidden",
-          background:
-            "radial-gradient(circle at center, rgba(56,189,248,0.14), rgba(15,23,42,0.5))",
-          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          background: "var(--media-bg)",
+          borderBottom: "1px solid var(--glass-hairline)",
         }}
       >
         {coverImage ? (
@@ -43,7 +42,7 @@ export default function ProductCard({ product }) {
               transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "scale(1.06)";
+              e.currentTarget.style.transform = "scale(1.04)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "scale(1)";
@@ -64,47 +63,19 @@ export default function ProductCard({ product }) {
           </div>
         )}
 
-        {/* Top Badges */}
-        <div
-          style={{
-            position: "absolute",
-            top: 12,
-            left: 12,
-            right: 12,
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 8,
-            pointerEvents: "none",
-          }}
-        >
-          {product?.category?.name ? (
-            <span
-              className="glass-badge"
-              style={{
-                background: "rgba(9, 14, 29, 0.68)",
-                backdropFilter: "blur(10px)",
-                color: "#e2e8f0",
-              }}
-            >
-              {product.category.name}
-            </span>
-          ) : (
-            <span />
-          )}
-
+        {!inStock && (
           <span
-            className={`glass-badge ${inStock ? "badge-emerald" : "badge-rose"}`}
+            className="glass-badge badge-rose"
             style={{
-              backdropFilter: "blur(10px)",
-              background: inStock
-                ? "rgba(6, 78, 59, 0.72)"
-                : "rgba(136, 19, 55, 0.75)",
+              position: "absolute",
+              top: 12,
+              right: 12,
+              backdropFilter: "blur(12px)",
             }}
           >
-            {inStock ? `${product.quantity} left` : "Out of Stock"}
+            Out of Stock
           </span>
-        </div>
+        )}
       </Link>
 
       {/* Body */}
@@ -118,14 +89,28 @@ export default function ProductCard({ product }) {
         }}
       >
         <div style={{ flex: 1 }}>
+          {product?.category?.name && (
+            <div
+              style={{
+                fontSize: "0.74rem",
+                fontWeight: 600,
+                color: "var(--accent)",
+                textTransform: "uppercase",
+                letterSpacing: "0.04em",
+                marginBottom: 4,
+              }}
+            >
+              {product.category.name}
+            </div>
+          )}
           <Link to={`/product/${product.slug}`}>
             <h3
               className="display-heading"
               style={{
-                fontSize: "1.06rem",
-                fontWeight: 700,
+                fontSize: "1.04rem",
+                fontWeight: 600,
                 marginBottom: 6,
-                lineHeight: 1.3,
+                lineHeight: 1.32,
               }}
             >
               {product.name}
@@ -134,9 +119,9 @@ export default function ProductCard({ product }) {
           <p
             style={{
               margin: 0,
-              fontSize: "0.86rem",
-              color: "var(--text-secondary)",
-              lineHeight: 1.5,
+              fontSize: "0.85rem",
+              color: "var(--text-muted)",
+              lineHeight: 1.48,
               display: "-webkit-box",
               WebkitLineClamp: 2,
               WebkitBoxOrient: "vertical",
@@ -152,13 +137,14 @@ export default function ProductCard({ product }) {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            paddingTop: 6,
+            paddingTop: 8,
+            borderTop: "1px solid var(--glass-hairline)",
           }}
         >
           <div>
             <div
-              className="display-heading tabular-nums gradient-text"
-              style={{ fontSize: "1.24rem", fontWeight: 700 }}
+              className="display-heading tabular-nums"
+              style={{ fontSize: "1.14rem", fontWeight: 700 }}
             >
               {formatPrice(product.price)}
             </div>
@@ -168,34 +154,25 @@ export default function ProductCard({ product }) {
                   display: "flex",
                   alignItems: "center",
                   gap: 4,
-                  fontSize: "0.74rem",
-                  color: "var(--accent-emerald)",
+                  fontSize: "0.73rem",
+                  color: "var(--success)",
                   marginTop: 2,
                 }}
               >
-                <Truck size={12} /> Fast Shipping
+                <Truck size={11} /> Free delivery
               </div>
             )}
           </div>
 
-          <div style={{ display: "flex", gap: 8 }}>
-            <Link
-              to={`/product/${product.slug}`}
-              className="glass-btn glass-btn-secondary glass-btn-sm"
-              title="View details"
-            >
-              <Eye size={15} />
-            </Link>
-            <button
-              type="button"
-              className="glass-btn glass-btn-primary glass-btn-sm"
-              disabled={!inStock}
-              onClick={() => addItem(product, 1)}
-            >
-              <ShoppingBag size={15} />
-              Add
-            </button>
-          </div>
+          <button
+            type="button"
+            className="glass-btn glass-btn-primary glass-btn-sm"
+            disabled={!inStock}
+            onClick={() => addItem(product, 1)}
+          >
+            <ShoppingBag size={14} />
+            Add
+          </button>
         </div>
       </div>
     </article>

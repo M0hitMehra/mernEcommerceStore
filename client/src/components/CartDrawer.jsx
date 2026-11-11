@@ -25,22 +25,21 @@ export default function CartDrawer() {
       <aside
         className="glass-drawer"
         onClick={(e) => e.stopPropagation()}
-        aria-label="Shopping cart drawer"
+        aria-label="Shopping bag drawer"
       >
-        {/* Header */}
         <div
           style={{
             padding: "20px 22px",
-            borderBottom: "1px solid rgba(255,255,255,0.12)",
+            borderBottom: "1px solid var(--glass-hairline)",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <ShoppingBag size={20} color="#38bdf8" />
-            <h2 className="display-heading" style={{ fontSize: "1.15rem" }}>
-              Your Cart ({totalCount})
+            <ShoppingBag size={19} style={{ color: "var(--accent)" }} />
+            <h2 className="display-heading" style={{ fontSize: "1.12rem" }}>
+              Your Bag ({totalCount})
             </h2>
           </div>
           <button
@@ -53,7 +52,6 @@ export default function CartDrawer() {
           </button>
         </div>
 
-        {/* Body */}
         <div
           style={{
             flex: 1,
@@ -75,10 +73,10 @@ export default function CartDrawer() {
             >
               <ShoppingBag
                 size={44}
-                style={{ opacity: 0.4, marginBottom: 12 }}
+                style={{ opacity: 0.35, marginBottom: 12 }}
               />
               <p style={{ margin: "0 0 16px", fontSize: "0.95rem" }}>
-                Your glass cart is empty.
+                Your bag is empty.
               </p>
               <button
                 type="button"
@@ -88,7 +86,7 @@ export default function CartDrawer() {
                   navigate("/");
                 }}
               >
-                Explore Products
+                Explore Mohit Store
               </button>
             </div>
           ) : (
@@ -112,8 +110,8 @@ export default function CartDrawer() {
                     borderRadius: 12,
                     overflow: "hidden",
                     flexShrink: 0,
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.1)",
+                    background: "var(--media-bg)",
+                    border: "1px solid var(--glass-hairline)",
                   }}
                 >
                   {item.image ? (
@@ -148,7 +146,7 @@ export default function CartDrawer() {
                     className="tabular-nums"
                     style={{
                       fontSize: "0.86rem",
-                      color: "var(--accent-cyan)",
+                      color: "var(--accent)",
                       fontWeight: 600,
                       marginTop: 2,
                     }}
@@ -208,13 +206,12 @@ export default function CartDrawer() {
           )}
         </div>
 
-        {/* Footer */}
         {items.length > 0 && (
           <div
             style={{
               padding: "18px 22px",
-              borderTop: "1px solid rgba(255,255,255,0.12)",
-              background: "rgba(255,255,255,0.03)",
+              borderTop: "1px solid var(--glass-hairline)",
+              background: "var(--glass-bg-subtle)",
             }}
           >
             <div
@@ -244,7 +241,7 @@ export default function CartDrawer() {
                 navigate("/cart");
               }}
             >
-              Proceed to Checkout
+              Review Bag & Checkout
               <ArrowRight size={16} />
             </button>
           </div>

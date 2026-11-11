@@ -48,11 +48,11 @@ export default function ForgotPasswordPage() {
         <div className="glass-badge badge-amber" style={{ marginBottom: 10 }}>
           <KeyRound size={13} /> Password Recovery
         </div>
-        <h1 className="display-heading gradient-text" style={{ fontSize: "1.75rem" }}>
+        <h1 className="display-heading" style={{ fontSize: "1.75rem", fontWeight: 700 }}>
           Reset Your Password
         </h1>
         <p style={{ color: "var(--text-secondary)", fontSize: "0.9rem", margin: "6px 0 20px" }}>
-          Enter your account email and we will send you a password reset link.
+          Enter your Mohit Store email and we will send a password reset link.
         </p>
 
         <form
@@ -86,8 +86,9 @@ export default function ForgotPasswordPage() {
             style={{
               marginTop: 18,
               padding: 14,
-              borderColor: "rgba(52,211,153,0.45)",
-              color: "#a7f3d0",
+              borderColor: "var(--success-border)",
+              background: "var(--success-bg)",
+              color: "var(--success)",
               fontSize: "0.88rem",
             }}
           >

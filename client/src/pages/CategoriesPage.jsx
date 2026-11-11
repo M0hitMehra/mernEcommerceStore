@@ -26,16 +26,16 @@ export default function CategoriesPage() {
         <div className="glass-badge badge-cyan" style={{ marginBottom: 10 }}>
           <Layers size={13} /> Collections
         </div>
-        <h1 className="display-heading gradient-text" style={{ fontSize: "2rem" }}>
+        <h1 className="display-heading" style={{ fontSize: "2rem", fontWeight: 700 }}>
           Browse All Categories
         </h1>
         <p style={{ color: "var(--text-secondary)", margin: "8px 0 0" }}>
-          Select any collection to filter products curated under that category.
+          Select any collection in Mohit Store to view curated products.
         </p>
       </div>
 
       {error && (
-        <div className="glass-card" style={{ padding: 20, color: "#fecdd3" }}>
+        <div className="glass-card" style={{ padding: 20, color: "var(--danger)" }}>
           {error}
         </div>
       )}
@@ -43,7 +43,7 @@ export default function CategoriesPage() {
       {loading ? (
         <div className="categories-grid">
           {Array.from({ length: 6 }).map((_, idx) => (
-            <div key={idx} className="glass-skeleton" style={{ height: 120 }} />
+            <div key={idx} className="glass-skeleton" style={{ height: 112 }} />
           ))}
         </div>
       ) : categories.length === 0 ? (
@@ -71,7 +71,7 @@ export default function CategoriesPage() {
               <div>
                 <h2
                   className="display-heading"
-                  style={{ fontSize: "1.18rem", fontWeight: 700 }}
+                  style={{ fontSize: "1.14rem", fontWeight: 600 }}
                 >
                   {cat.name}
                 </h2>
@@ -85,11 +85,8 @@ export default function CategoriesPage() {
                   /{cat.slug}
                 </div>
               </div>
-              <div
-                className="glass-pill"
-                style={{ padding: 9, borderRadius: 12 }}
-              >
-                <ArrowUpRight size={17} color="#38bdf8" />
+              <div className="glass-pill" style={{ padding: 8 }}>
+                <ArrowUpRight size={16} style={{ color: "var(--accent)" }} />
               </div>
             </Link>
           ))}

@@ -10,16 +10,19 @@ import {
   ChevronDown,
   Menu,
   X,
-  Sparkles,
   Grid,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
+import { useTheme } from "../context/ThemeContext";
 import { categoryApi } from "../api/client";
 
 export default function Navbar() {
   const { user, isAuthenticated, isAdmin, logout } = useAuth();
   const { totalCount, setDrawerOpen } = useCart();
+  const { isDark, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
   const [keyword, setKeyword] = useState("");
@@ -73,8 +76,8 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: "16px",
-          padding: "12px 20px",
+          gap: "14px",
+          padding: "10px 18px",
         }}
       >
         {/* Brand */}
@@ -89,30 +92,26 @@ export default function Navbar() {
         >
           <div
             style={{
-              width: 38,
-              height: 38,
-              borderRadius: 12,
-              background:
-                "linear-gradient(135deg, rgba(56,189,248,0.85), rgba(168,85,247,0.85))",
+              width: 34,
+              height: 34,
+              borderRadius: 10,
+              background: "var(--accent)",
+              color: "#fff",
               display: "grid",
               placeItems: "center",
-              boxShadow: "0 6px 20px rgba(56, 189, 248, 0.35)",
-              border: "1px solid rgba(255,255,255,0.35)",
+              fontWeight: 700,
+              fontSize: "1rem",
+              boxShadow: "0 4px 12px rgba(0, 113, 227, 0.28)",
             }}
           >
-            <Sparkles size={19} color="#fff" />
+            M
           </div>
-          <div>
-            <div
-              className="display-heading"
-              style={{ fontSize: "1.12rem", fontWeight: 700, lineHeight: 1.1 }}
-            >
-              Lumina<span style={{ color: "var(--accent-cyan)" }}>Glass</span>
-            </div>
-            <div style={{ fontSize: "0.68rem", color: "var(--text-muted)" }}>
-              Curated Commerce
-            </div>
-          </div>
+          <span
+            className="display-heading"
+            style={{ fontSize: "1.08rem", fontWeight: 700, letterSpacing: "-0.02em" }}
+          >
+            Mohit Store
+          </span>
         </Link>
 
         {/* Desktop Search */}
@@ -121,12 +120,12 @@ export default function Navbar() {
           className="nav-search-desktop"
           style={{
             flex: 1,
-            maxWidth: 420,
+            maxWidth: 400,
             position: "relative",
           }}
         >
           <Search
-            size={16}
+            size={15}
             style={{
               position: "absolute",
               left: 14,
@@ -139,16 +138,16 @@ export default function Navbar() {
           <input
             type="text"
             className="glass-input"
-            placeholder="Search products or price (e.g. 999)..."
+            placeholder="Search Mohit Store..."
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
             style={{
-              paddingLeft: 40,
-              paddingRight: 80,
-              paddingTop: 9,
-              paddingBottom: 9,
+              paddingLeft: 38,
+              paddingRight: 76,
+              paddingTop: 8,
+              paddingBottom: 8,
               borderRadius: 999,
-              fontSize: "0.88rem",
+              fontSize: "0.86rem",
             }}
           />
           <button
@@ -159,8 +158,8 @@ export default function Navbar() {
               right: 4,
               top: "50%",
               transform: "translateY(-50%)",
-              borderRadius: 999,
-              padding: "6px 14px",
+              padding: "5px 13px",
+              fontSize: "0.78rem",
             }}
           >
             Search
@@ -170,7 +169,7 @@ export default function Navbar() {
         {/* Desktop Actions */}
         <nav
           className="nav-links-desktop"
-          style={{ display: "flex", alignItems: "center", gap: "10px" }}
+          style={{ display: "flex", alignItems: "center", gap: "8px" }}
         >
           <NavLink
             to="/"
@@ -178,7 +177,7 @@ export default function Navbar() {
               `glass-pill ${isActive ? "active" : ""}`
             }
           >
-            Shop
+            Store
           </NavLink>
 
           {/* Categories Dropdown */}
@@ -188,21 +187,20 @@ export default function Navbar() {
               className={`glass-pill ${catMenuOpen ? "active" : ""}`}
               onClick={() => setCatMenuOpen((v) => !v)}
             >
-              <Grid size={15} />
+              <Grid size={14} />
               Categories
-              <ChevronDown size={14} />
+              <ChevronDown size={13} />
             </button>
             {catMenuOpen && (
               <div
-                className="glass-surface"
+                className="glass-dropdown"
                 style={{
                   position: "absolute",
                   top: "calc(100% + 10px)",
                   right: 0,
-                  width: 240,
+                  width: 236,
                   padding: 8,
                   zIndex: 60,
-                  background: "rgba(12, 18, 34, 0.92)",
                 }}
               >
                 <Link
@@ -211,21 +209,15 @@ export default function Navbar() {
                   style={{
                     display: "block",
                     padding: "9px 12px",
-                    borderRadius: 10,
+                    borderRadius: 12,
                     fontSize: "0.86rem",
                     fontWeight: 600,
-                    color: "var(--accent-cyan)",
+                    color: "var(--accent)",
                   }}
                 >
                   All Categories
                 </Link>
-                <div
-                  style={{
-                    height: 1,
-                    background: "rgba(255,255,255,0.08)",
-                    margin: "4px 0",
-                  }}
-                />
+                <div className="hairline-divider" style={{ margin: "4px 0" }} />
                 {categories.length === 0 ? (
                   <div
                     style={{
@@ -251,9 +243,8 @@ export default function Navbar() {
                           color: "var(--text-secondary)",
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.background =
-                            "rgba(255,255,255,0.08)";
-                          e.currentTarget.style.color = "#fff";
+                          e.currentTarget.style.background = "var(--pill-bg)";
+                          e.currentTarget.style.color = "var(--text-primary)";
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.background = "transparent";
@@ -269,27 +260,39 @@ export default function Navbar() {
             )}
           </div>
 
+          {/* Theme Toggle */}
+          <button
+            type="button"
+            className="glass-pill"
+            onClick={toggleTheme}
+            aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            style={{ padding: "8px 11px" }}
+          >
+            {isDark ? <Sun size={15} /> : <Moon size={15} />}
+          </button>
+
           {/* Cart Trigger */}
           <button
             type="button"
             className="glass-pill"
             onClick={() => setDrawerOpen(true)}
-            aria-label="Open shopping cart"
+            aria-label="Open shopping bag"
           >
-            <ShoppingBag size={16} />
-            <span>Cart</span>
+            <ShoppingBag size={15} />
+            <span>Bag</span>
             {totalCount > 0 && (
               <span
                 style={{
-                  minWidth: 20,
-                  height: 20,
+                  minWidth: 19,
+                  height: 19,
                   borderRadius: 999,
                   padding: "0 6px",
                   fontSize: "0.72rem",
                   fontWeight: 700,
                   display: "grid",
                   placeItems: "center",
-                  background: "linear-gradient(135deg, #38bdf8, #818cf8)",
+                  background: "var(--accent)",
                   color: "#fff",
                 }}
               >
@@ -300,11 +303,17 @@ export default function Navbar() {
 
           {/* Auth Controls */}
           {!isAuthenticated ? (
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <Link to="/login" className="glass-btn glass-btn-secondary glass-btn-sm">
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <Link
+                to="/login"
+                className="glass-btn glass-btn-secondary glass-btn-sm"
+              >
                 Sign In
               </Link>
-              <Link to="/register" className="glass-btn glass-btn-primary glass-btn-sm">
+              <Link
+                to="/register"
+                className="glass-btn glass-btn-primary glass-btn-sm"
+              >
                 Join
               </Link>
             </div>
@@ -315,15 +324,22 @@ export default function Navbar() {
                 className="glass-pill active"
                 onClick={() => setUserMenuOpen((v) => !v)}
               >
-                <User size={15} />
-                <span style={{ maxWidth: 110, overflow: "hidden", textOverflow: "ellipsis" }}>
+                <User size={14} />
+                <span
+                  style={{
+                    maxWidth: 100,
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
                   {user?.name?.split(" ")[0] || "Account"}
                 </span>
-                <ChevronDown size={14} />
+                <ChevronDown size={13} />
               </button>
               {userMenuOpen && (
                 <div
-                  className="glass-surface"
+                  className="glass-dropdown"
                   style={{
                     position: "absolute",
                     top: "calc(100% + 10px)",
@@ -331,11 +347,10 @@ export default function Navbar() {
                     width: 230,
                     padding: 8,
                     zIndex: 60,
-                    background: "rgba(12, 18, 34, 0.94)",
                   }}
                 >
                   <div style={{ padding: "8px 12px" }}>
-                    <div style={{ fontWeight: 700, fontSize: "0.9rem" }}>
+                    <div style={{ fontWeight: 600, fontSize: "0.9rem" }}>
                       {user?.name}
                     </div>
                     <div
@@ -349,13 +364,7 @@ export default function Navbar() {
                       {user?.email}
                     </div>
                   </div>
-                  <div
-                    style={{
-                      height: 1,
-                      background: "rgba(255,255,255,0.08)",
-                      margin: "6px 0",
-                    }}
-                  />
+                  <div className="hairline-divider" style={{ margin: "6px 0" }} />
                   <Link
                     to="/dashboard/user"
                     onClick={() => setUserMenuOpen(false)}
@@ -395,20 +404,14 @@ export default function Navbar() {
                         padding: "9px 12px",
                         borderRadius: 10,
                         fontSize: "0.86rem",
-                        color: "var(--accent-cyan)",
+                        color: "var(--accent)",
                         fontWeight: 600,
                       }}
                     >
                       <ShieldCheck size={15} /> Admin Studio
                     </Link>
                   )}
-                  <div
-                    style={{
-                      height: 1,
-                      background: "rgba(255,255,255,0.08)",
-                      margin: "6px 0",
-                    }}
-                  />
+                  <div className="hairline-divider" style={{ margin: "6px 0" }} />
                   <button
                     type="button"
                     onClick={() => {
@@ -424,7 +427,7 @@ export default function Navbar() {
                       padding: "9px 12px",
                       borderRadius: 10,
                       fontSize: "0.86rem",
-                      color: "#fda4af",
+                      color: "var(--danger)",
                       background: "transparent",
                       border: "none",
                       cursor: "pointer",
@@ -439,16 +442,25 @@ export default function Navbar() {
           )}
         </nav>
 
-        {/* Mobile Buttons */}
+        {/* Mobile Triggers */}
         <div
           className="nav-mobile-triggers"
-          style={{ display: "none", alignItems: "center", gap: 8 }}
+          style={{ display: "none", alignItems: "center", gap: 6 }}
         >
           <button
             type="button"
             className="glass-pill"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            style={{ padding: 8 }}
+          >
+            {isDark ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+          <button
+            type="button"
+            className="glass-pill"
             onClick={() => setDrawerOpen(true)}
-            aria-label="Open cart"
+            aria-label="Open bag"
           >
             <ShoppingBag size={16} />
             {totalCount > 0 && <span>{totalCount}</span>}
@@ -459,17 +471,17 @@ export default function Navbar() {
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Toggle menu"
           >
-            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+            {mobileOpen ? <X size={17} /> : <Menu size={17} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Content */}
+      {/* Mobile Menu */}
       {mobileOpen && (
         <div
           style={{
-            padding: "12px 20px 20px",
-            borderTop: "1px solid rgba(255,255,255,0.1)",
+            padding: "12px 18px 18px",
+            borderTop: "1px solid var(--glass-hairline)",
             display: "flex",
             flexDirection: "column",
             gap: 12,
@@ -479,21 +491,17 @@ export default function Navbar() {
             <input
               type="text"
               className="glass-input"
-              placeholder="Search products..."
+              placeholder="Search Mohit Store..."
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
             />
-            <button type="submit" className="glass-btn glass-btn-primary">
+            <button type="submit" className="glass-btn glass-btn-primary glass-btn-sm">
               Go
             </button>
           </form>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-            <Link
-              to="/"
-              className="glass-pill"
-              onClick={() => setMobileOpen(false)}
-            >
-              Shop
+            <Link to="/" className="glass-pill" onClick={() => setMobileOpen(false)}>
+              Store
             </Link>
             <Link
               to="/categories"
@@ -502,12 +510,8 @@ export default function Navbar() {
             >
               Categories
             </Link>
-            <Link
-              to="/cart"
-              className="glass-pill"
-              onClick={() => setMobileOpen(false)}
-            >
-              Cart ({totalCount})
+            <Link to="/cart" className="glass-pill" onClick={() => setMobileOpen(false)}>
+              Bag ({totalCount})
             </Link>
             {isAuthenticated ? (
               <>
@@ -542,7 +546,7 @@ export default function Navbar() {
                     logout();
                   }}
                 >
-                  Logout
+                  Sign Out
                 </button>
               </>
             ) : (
@@ -559,7 +563,7 @@ export default function Navbar() {
                   className="glass-pill active"
                   onClick={() => setMobileOpen(false)}
                 >
-                  Register
+                  Join
                 </Link>
               </>
             )}

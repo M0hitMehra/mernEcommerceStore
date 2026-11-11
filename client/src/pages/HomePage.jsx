@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import {
   SlidersHorizontal,
   RotateCcw,
-  Sparkles,
   ChevronLeft,
   ChevronRight,
   Search,
@@ -92,118 +91,98 @@ export default function HomePage() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-      {/* Hero Banner */}
+      {/* Clean Apple-style Hero Banner */}
       <section
         className="glass-surface"
         style={{
-          padding: "36px 32px",
-          position: "relative",
-          overflow: "hidden",
+          padding: "36px 34px",
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 24,
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            right: -60,
-            top: -60,
-            width: 280,
-            height: 280,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(56,189,248,0.28), transparent 70%)",
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 24,
-            position: "relative",
-          }}
-        >
-          <div style={{ maxWidth: 640 }}>
-            <div
-              className="glass-badge badge-cyan"
-              style={{ marginBottom: 14 }}
-            >
-              <Sparkles size={13} />
-              Next-Gen Frosted Glass Storefront
-            </div>
-            <h1
-              className="display-heading gradient-text"
-              style={{
-                fontSize: "clamp(2rem, 4vw, 3.1rem)",
-                fontWeight: 800,
-                lineHeight: 1.08,
-                marginBottom: 14,
-              }}
-            >
-              Curated Essentials, Crafted in Luminous Glass.
-            </h1>
-            <p
-              style={{
-                margin: "0 0 22px",
-                color: "var(--text-secondary)",
-                fontSize: "1.02rem",
-                lineHeight: 1.6,
-              }}
-            >
-              Browse our live catalog with instant category filtering, price
-              range precision, and seamless Braintree checkout.
-            </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-              <Link to="/categories" className="glass-btn glass-btn-primary">
-                <Layers size={16} />
-                Explore Categories
-              </Link>
-              <Link to="/cart" className="glass-btn glass-btn-secondary">
-                View Cart & Checkout
-              </Link>
-            </div>
+        <div style={{ maxWidth: 640 }}>
+          <div className="glass-badge badge-cyan" style={{ marginBottom: 14 }}>
+            Mohit Store
           </div>
-
-          <div
+          <h1
+            className="display-heading"
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, minmax(130px, 1fr))",
-              gap: 12,
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              fontWeight: 700,
+              lineHeight: 1.08,
+              marginBottom: 12,
             }}
           >
-            <div className="glass-card" style={{ padding: "16px 18px" }}>
-              <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-                Catalog Items
-              </div>
-              <div
-                className="display-heading tabular-nums"
-                style={{ fontSize: "1.75rem", fontWeight: 700, marginTop: 4 }}
-              >
-                {meta.productsCount}
-              </div>
+            The best way to buy the products you love.
+          </h1>
+          <p
+            style={{
+              margin: "0 0 22px",
+              color: "var(--text-secondary)",
+              fontSize: "1.02rem",
+              lineHeight: 1.55,
+            }}
+          >
+            Explore curated collections with instant category filtering, price
+            precision, and seamless Braintree checkout.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+            <Link to="/categories" className="glass-btn glass-btn-primary">
+              <Layers size={16} />
+              Browse Categories
+            </Link>
+            <Link to="/cart" className="glass-btn glass-btn-secondary">
+              Review Bag
+            </Link>
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, minmax(130px, 1fr))",
+            gap: 12,
+          }}
+        >
+          <div className="glass-card" style={{ padding: "18px 20px" }}>
+            <div style={{ fontSize: "0.76rem", color: "var(--text-muted)" }}>
+              Products
             </div>
-            <div className="glass-card" style={{ padding: "16px 18px" }}>
-              <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-                Categories
-              </div>
-              <div
-                className="display-heading tabular-nums"
-                style={{ fontSize: "1.75rem", fontWeight: 700, marginTop: 4 }}
-              >
-                {categories.length}
-              </div>
+            <div
+              className="display-heading tabular-nums"
+              style={{ fontSize: "1.8rem", fontWeight: 700, marginTop: 4 }}
+            >
+              {meta.productsCount}
+            </div>
+          </div>
+          <div className="glass-card" style={{ padding: "18px 20px" }}>
+            <div style={{ fontSize: "0.76rem", color: "var(--text-muted)" }}>
+              Collections
+            </div>
+            <div
+              className="display-heading tabular-nums"
+              style={{ fontSize: "1.8rem", fontWeight: 700, marginTop: 4 }}
+            >
+              {categories.length}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Storefront Grid */}
+      {/* Main Storefront */}
       <div className="storefront-layout">
-        {/* Sidebar Filters */}
+        {/* Filters */}
         <aside
           className="glass-surface"
-          style={{ padding: 20, display: "flex", flexDirection: "column", gap: 20 }}
+          style={{
+            padding: 20,
+            display: "flex",
+            flexDirection: "column",
+            gap: 20,
+          }}
         >
           <div
             style={{
@@ -213,9 +192,9 @@ export default function HomePage() {
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <SlidersHorizontal size={17} color="#38bdf8" />
-              <h2 className="display-heading" style={{ fontSize: "1.05rem" }}>
-                Filters
+              <SlidersHorizontal size={16} style={{ color: "var(--accent)" }} />
+              <h2 className="display-heading" style={{ fontSize: "1.02rem" }}>
+                Refine
               </h2>
             </div>
             <button
@@ -229,7 +208,6 @@ export default function HomePage() {
             </button>
           </div>
 
-          {/* Keyword Filter */}
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -237,12 +215,12 @@ export default function HomePage() {
               setPage(1);
             }}
           >
-            <label className="glass-label">Keyword or Approx Price</label>
+            <label className="glass-label">Keyword or Price</label>
             <div style={{ display: "flex", gap: 8 }}>
               <input
                 type="text"
                 className="glass-input"
-                placeholder="Name, info, or 500..."
+                placeholder="Name, spec, or 500..."
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
               />
@@ -256,10 +234,9 @@ export default function HomePage() {
             </div>
           </form>
 
-          {/* Category Filter */}
           <div>
             <label className="glass-label">Category</label>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
               <button
                 type="button"
                 className={`glass-pill ${selectedCategory === "" ? "active" : ""}`}
@@ -288,10 +265,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Price Presets */}
           <div>
             <label className="glass-label">Price Range</label>
-            <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
               {PRICE_PRESETS.map((preset) => {
                 const isActive =
                   minPrice === preset.min && maxPrice === preset.max;
@@ -314,7 +290,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Custom Price Bounds */}
           <div>
             <label className="glass-label">Custom Range (₹)</label>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
@@ -357,13 +332,16 @@ export default function HomePage() {
               gap: 12,
             }}
           >
-            <div style={{ fontSize: "0.92rem", color: "var(--text-secondary)" }}>
+            <div style={{ fontSize: "0.9rem", color: "var(--text-secondary)" }}>
               Showing{" "}
-              <strong style={{ color: "#fff" }}>{products.length}</strong> of{" "}
-              <strong style={{ color: "#fff" }}>
+              <strong style={{ color: "var(--text-primary)" }}>
+                {products.length}
+              </strong>{" "}
+              of{" "}
+              <strong style={{ color: "var(--text-primary)" }}>
                 {meta.filteredProductsCount}
               </strong>{" "}
-              matching products
+              products
               {appliedKeyword && (
                 <span>
                   {" "}
@@ -371,7 +349,7 @@ export default function HomePage() {
                 </span>
               )}
             </div>
-            <div className="glass-badge badge-violet">
+            <div className="glass-badge">
               Page {page} of {totalPages}
             </div>
           </div>
@@ -381,8 +359,8 @@ export default function HomePage() {
               className="glass-card"
               style={{
                 padding: 20,
-                borderColor: "rgba(251,113,133,0.45)",
-                color: "#fecdd3",
+                borderColor: "var(--danger-border)",
+                color: "var(--danger)",
               }}
             >
               {error}
@@ -395,7 +373,7 @@ export default function HomePage() {
                 <div
                   key={idx}
                   className="glass-skeleton"
-                  style={{ height: 360 }}
+                  style={{ height: 350 }}
                 />
               ))}
             </div>
@@ -415,7 +393,7 @@ export default function HomePage() {
                 className="glass-btn glass-btn-primary"
                 onClick={resetFilters}
               >
-                Reset All Filters
+                Reset Filters
               </button>
             </div>
           ) : (
@@ -426,7 +404,6 @@ export default function HomePage() {
             </div>
           )}
 
-          {/* Pagination */}
           {totalPages > 1 && (
             <div
               style={{

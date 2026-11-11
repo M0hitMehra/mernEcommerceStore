@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Sparkles } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -12,7 +11,7 @@ export default function Footer() {
       <div
         className="glass-surface container-wide"
         style={{
-          padding: "24px 28px",
+          padding: "20px 26px",
           display: "flex",
           flexWrap: "wrap",
           alignItems: "center",
@@ -21,12 +20,26 @@ export default function Footer() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <Sparkles size={18} color="#38bdf8" />
-          <span className="display-heading" style={{ fontWeight: 700 }}>
-            LuminaGlass Store
+          <span
+            style={{
+              width: 26,
+              height: 26,
+              borderRadius: 8,
+              background: "var(--accent)",
+              color: "#fff",
+              display: "grid",
+              placeItems: "center",
+              fontWeight: 700,
+              fontSize: "0.8rem",
+            }}
+          >
+            M
           </span>
-          <span style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>
-            — Frosted Glass Commerce Experience
+          <span className="display-heading" style={{ fontWeight: 700 }}>
+            Mohit Store
+          </span>
+          <span style={{ color: "var(--text-muted)", fontSize: "0.84rem" }}>
+            — Curated Commerce
           </span>
         </div>
 
@@ -34,15 +47,15 @@ export default function Footer() {
           style={{
             display: "flex",
             flexWrap: "wrap",
-            gap: 18,
-            fontSize: "0.88rem",
+            gap: 20,
+            fontSize: "0.86rem",
             color: "var(--text-secondary)",
           }}
         >
-          <Link to="/">Catalog</Link>
+          <Link to="/">Store</Link>
           <Link to="/categories">Categories</Link>
-          <Link to="/cart">Checkout</Link>
-          <Link to="/dashboard/user/orders">Track Orders</Link>
+          <Link to="/cart">Bag</Link>
+          <Link to="/dashboard/user/orders">Orders</Link>
         </div>
       </div>
     </footer>

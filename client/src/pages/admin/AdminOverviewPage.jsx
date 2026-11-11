@@ -96,7 +96,7 @@ export default function AdminOverviewPage() {
         </div>
 
         {error && (
-          <div className="glass-card" style={{ padding: 18, color: "#fecdd3" }}>
+          <div className="glass-card" style={{ padding: 18, color: "var(--danger)" }}>
             {error}
           </div>
         )}

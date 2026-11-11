@@ -335,7 +335,7 @@ export default function AdminProductsPage() {
               maxHeight: "90vh",
               overflowY: "auto",
               padding: 28,
-              background: "rgba(12, 18, 34, 0.94)",
+              background: "var(--glass-dropdown-bg)",
             }}
           >
             <div
@@ -477,7 +477,7 @@ export default function AdminProductsPage() {
                     borderStyle: "dashed",
                   }}
                 >
-                  <Upload size={17} color="#38bdf8" />
+                  <Upload size={17} style={{ color: "var(--accent)" }} />
                   <span>Choose image(s)</span>
                   <input
                     type="file"

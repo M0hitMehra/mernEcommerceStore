@@ -99,12 +99,12 @@ export default function CartPage() {
         className="glass-surface"
         style={{ padding: "64px 24px", textAlign: "center" }}
       >
-        <ShoppingBag size={52} style={{ opacity: 0.4, marginBottom: 14 }} />
-        <h1 className="display-heading" style={{ fontSize: "1.8rem" }}>
-          Your Cart is Empty
+        <ShoppingBag size={50} style={{ opacity: 0.35, marginBottom: 14 }} />
+        <h1 className="display-heading" style={{ fontSize: "1.8rem", fontWeight: 700 }}>
+          Your Bag is Empty
         </h1>
         <p style={{ color: "var(--text-secondary)", margin: "10px 0 24px" }}>
-          Add curated products from the store to begin checkout.
+          Add products from Mohit Store to begin checkout.
         </p>
         <Link to="/" className="glass-btn glass-btn-primary">
           Continue Shopping
@@ -117,12 +117,14 @@ export default function CartPage() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
       <div className="glass-surface" style={{ padding: "24px 28px" }}>
-        <h1 className="display-heading gradient-text" style={{ fontSize: "1.9rem" }}>
-          Shopping Cart & Checkout
+        <h1 className="display-heading" style={{ fontSize: "1.9rem", fontWeight: 700 }}>
+          Bag & Checkout
         </h1>
         <p style={{ color: "var(--text-secondary)", margin: "6px 0 0" }}>
-          {totalCount} item(s) ready for order — Total{" "}
-          <strong style={{ color: "#fff" }}>{formatPrice(subtotal)}</strong>
+          {totalCount} item(s) — Total{" "}
+          <strong style={{ color: "var(--text-primary)" }}>
+            {formatPrice(subtotal)}
+          </strong>
         </p>
       </div>
 
@@ -134,7 +136,6 @@ export default function CartPage() {
           alignItems: "start",
         }}
       >
-        {/* Left: Cart Items */}
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           {items.map((item) => (
             <div
@@ -150,12 +151,13 @@ export default function CartPage() {
               <Link
                 to={`/product/${item.slug}`}
                 style={{
-                  width: 92,
-                  height: 92,
+                  width: 90,
+                  height: 90,
                   borderRadius: 14,
                   overflow: "hidden",
                   flexShrink: 0,
-                  background: "rgba(255,255,255,0.06)",
+                  background: "var(--media-bg)",
+                  border: "1px solid var(--glass-hairline)",
                 }}
               >
                 {item.image ? (
@@ -173,8 +175,8 @@ export default function CartPage() {
                   className="display-heading"
                   style={{
                     display: "block",
-                    fontSize: "1.06rem",
-                    fontWeight: 700,
+                    fontSize: "1.04rem",
+                    fontWeight: 600,
                     marginBottom: 4,
                   }}
                 >
@@ -182,7 +184,7 @@ export default function CartPage() {
                 </Link>
                 <div
                   className="tabular-nums"
-                  style={{ color: "var(--accent-cyan)", fontWeight: 600 }}
+                  style={{ color: "var(--accent)", fontWeight: 600 }}
                 >
                   {formatPrice(item.price)} each
                 </div>
@@ -232,7 +234,7 @@ export default function CartPage() {
               >
                 <div
                   className="display-heading tabular-nums"
-                  style={{ fontSize: "1.12rem", fontWeight: 700 }}
+                  style={{ fontSize: "1.1rem", fontWeight: 700 }}
                 >
                   {formatPrice(item.price * item.quantity)}
                 </div>
@@ -248,7 +250,6 @@ export default function CartPage() {
           ))}
         </div>
 
-        {/* Right: Summary & Payment */}
         <div
           className="glass-surface"
           style={{
@@ -258,7 +259,7 @@ export default function CartPage() {
             gap: 18,
           }}
         >
-          <h2 className="display-heading" style={{ fontSize: "1.3rem" }}>
+          <h2 className="display-heading" style={{ fontSize: "1.28rem", fontWeight: 700 }}>
             Order Summary
           </h2>
 
@@ -268,7 +269,7 @@ export default function CartPage() {
               flexDirection: "column",
               gap: 10,
               paddingBottom: 14,
-              borderBottom: "1px solid rgba(255,255,255,0.12)",
+              borderBottom: "1px solid var(--glass-hairline)",
             }}
           >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -277,7 +278,7 @@ export default function CartPage() {
             </div>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <span style={{ color: "var(--text-secondary)" }}>Shipping</span>
-              <span style={{ color: "var(--accent-emerald)" }}>Included</span>
+              <span style={{ color: "var(--success)", fontWeight: 600 }}>Included</span>
             </div>
             <div
               style={{
@@ -289,9 +290,7 @@ export default function CartPage() {
               }}
             >
               <span>Total</span>
-              <span className="tabular-nums gradient-text">
-                {formatPrice(subtotal)}
-              </span>
+              <span className="tabular-nums">{formatPrice(subtotal)}</span>
             </div>
           </div>
 
@@ -306,7 +305,7 @@ export default function CartPage() {
                   marginBottom: 8,
                 }}
               >
-                <Lock size={16} color="#38bdf8" />
+                <Lock size={16} style={{ color: "var(--accent)" }} />
                 Sign in required to checkout
               </div>
               <p
@@ -316,8 +315,8 @@ export default function CartPage() {
                   color: "var(--text-secondary)",
                 }}
               >
-                Log into your account to confirm your delivery address and
-                complete Braintree payment.
+                Sign in to confirm your delivery address and complete Braintree
+                payment.
               </p>
               <button
                 type="button"
@@ -330,7 +329,6 @@ export default function CartPage() {
             </div>
           ) : (
             <>
-              {/* Address Card */}
               <div className="glass-card" style={{ padding: 14 }}>
                 <div
                   style={{
@@ -347,7 +345,7 @@ export default function CartPage() {
                       gap: 6,
                       fontSize: "0.84rem",
                       fontWeight: 700,
-                      color: "var(--accent-cyan)",
+                      color: "var(--accent)",
                     }}
                   >
                     <MapPin size={14} /> Delivery Address
@@ -367,7 +365,6 @@ export default function CartPage() {
                 </div>
               </div>
 
-              {/* Braintree Drop-In */}
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 <div
                   style={{
@@ -378,7 +375,7 @@ export default function CartPage() {
                     fontWeight: 600,
                   }}
                 >
-                  <CreditCard size={16} color="#38bdf8" />
+                  <CreditCard size={16} style={{ color: "var(--accent)" }} />
                   Payment Method
                 </div>
 

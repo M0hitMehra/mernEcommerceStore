@@ -99,7 +99,7 @@ export default function ResetPasswordPage() {
         </form>
 
         <div style={{ marginTop: 18, textAlign: "center", fontSize: "0.86rem" }}>
-          <Link to="/login" style={{ color: "var(--accent-cyan)" }}>
+          <Link to="/login" style={{ color: "var(--accent)" }}>
             Return to Sign In
           </Link>
         </div>

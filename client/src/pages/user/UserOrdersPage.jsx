@@ -35,16 +35,16 @@ export default function UserOrdersPage() {
           <div className="glass-badge badge-cyan" style={{ marginBottom: 8 }}>
             <Package size={13} /> Orders
           </div>
-          <h1 className="display-heading gradient-text" style={{ fontSize: "1.8rem" }}>
+          <h1 className="display-heading" style={{ fontSize: "1.8rem", fontWeight: 700 }}>
             Order History
           </h1>
           <p style={{ color: "var(--text-secondary)", margin: "6px 0 0" }}>
-            Track payment confirmations and delivery status across all your orders.
+            Track payment confirmations and delivery status across your orders.
           </p>
         </div>
 
         {error && (
-          <div className="glass-card" style={{ padding: 18, color: "#fecdd3" }}>
+          <div className="glass-card" style={{ padding: 18, color: "var(--danger)" }}>
             {error}
           </div>
         )}
@@ -89,7 +89,7 @@ export default function UserOrdersPage() {
                     alignItems: "center",
                     gap: 10,
                     paddingBottom: 12,
-                    borderBottom: "1px solid rgba(255,255,255,0.1)",
+                    borderBottom: "1px solid var(--glass-hairline)",
                   }}
                 >
                   <div>
@@ -152,7 +152,7 @@ export default function UserOrdersPage() {
                             borderRadius: 10,
                             overflow: "hidden",
                             flexShrink: 0,
-                            background: "rgba(255,255,255,0.06)",
+                            background: "var(--media-bg)",
                           }}
                         >
                           {p?.images?.[0]?.url ? (
@@ -191,7 +191,7 @@ export default function UserOrdersPage() {
                         </div>
                         <div
                           className="tabular-nums"
-                          style={{ fontWeight: 700, color: "var(--accent-cyan)" }}
+                          style={{ fontWeight: 700, color: "var(--accent)" }}
                         >
                           {formatPrice((p?.price || 0) * (line.quantity || 1))}
                         </div>
