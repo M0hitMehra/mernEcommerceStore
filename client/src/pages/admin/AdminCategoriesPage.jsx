@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
-import { Plus, Pencil, Trash2, X, Check } from "lucide-react";
-import { categoryApi, getErrorMessage } from "../../api/client";
+import { Plus, Pencil, Trash2, X, Check, ExternalLink } from "lucide-react";
+import { authApi, categoryApi, getErrorMessage } from "../../api/client";
 import { AdminSidebar } from "../../components/DashboardSidebar";
 
 export default function AdminCategoriesPage() {
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [newName, setNewName] = useState("");
   const [creating, setCreating] = useState(false);
@@ -15,8 +17,12 @@ export default function AdminCategoriesPage() {
 
   const loadCategories = async () => {
     try {
-      const { data } = await categoryApi.getAll();
-      setCategories(data?.categories || []);
+      const [catRes, overviewRes] = await Promise.all([
+        categoryApi.getAll(),
+        authApi.getAdminOverview(),
+      ]);
+      setCategories(catRes.data?.categories || []);
+      setProducts(overviewRes.data?.products || []);
     } catch (err) {
       toast.error(getErrorMessage(err, "Failed to load categories"));
     } finally {
@@ -27,6 +33,15 @@ export default function AdminCategoriesPage() {
   useEffect(() => {
     loadCategories();
   }, []);
+
+  const countsByCategory = useMemo(() => {
+    const map = {};
+    products.forEach((p) => {
+      const cid = p.category?._id || p.category;
+      if (cid) map[cid] = (map[cid] || 0) + 1;
+    });
+    return map;
+  }, [products]);
 
   const handleCreate = async (e) => {
     e.preventDefault();
@@ -80,11 +95,11 @@ export default function AdminCategoriesPage() {
 
       <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
         <div className="glass-surface" style={{ padding: "24px 28px" }}>
-          <h1 className="display-heading gradient-text" style={{ fontSize: "1.8rem" }}>
-            Manage Categories
+          <h1 className="display-heading" style={{ fontSize: "1.8rem", fontWeight: 700 }}>
+            Manage Categories ({categories.length})
           </h1>
           <p style={{ color: "var(--text-secondary)", margin: "6px 0 18px" }}>
-            Create, rename, or remove product collections.
+            Create, rename, or remove Mohit Store collections.
           </p>
 
           <form
@@ -125,6 +140,7 @@ export default function AdminCategoriesPage() {
                   <tr>
                     <th>Name</th>
                     <th>Slug</th>
+                    <th>Products</th>
                     <th style={{ textAlign: "right" }}>Actions</th>
                   </tr>
                 </thead>
@@ -146,6 +162,11 @@ export default function AdminCategoriesPage() {
                       </td>
                       <td>
                         <code style={{ color: "var(--text-muted)" }}>{cat.slug}</code>
+                      </td>
+                      <td>
+                        <span className="glass-badge badge-cyan">
+                          {countsByCategory[cat._id] || 0} item(s)
+                        </span>
                       </td>
                       <td style={{ textAlign: "right" }}>
                         <div
@@ -174,6 +195,13 @@ export default function AdminCategoriesPage() {
                             </>
                           ) : (
                             <>
+                              <Link
+                                to={`/category/${cat.slug}`}
+                                className="glass-btn glass-btn-secondary glass-btn-sm"
+                                title="View in Storefront"
+                              >
+                                <ExternalLink size={14} />
+                              </Link>
                               <button
                                 type="button"
                                 className="glass-btn glass-btn-secondary glass-btn-sm"

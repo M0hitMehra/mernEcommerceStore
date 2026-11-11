@@ -48,6 +48,7 @@ export default function App() {
               <main className="app-main">
                 <Routes>
                   <Route path="/" element={<HomePage />} />
+                  <Route path="/products" element={<HomePage />} />
                   <Route path="/categories" element={<CategoriesPage />} />
                   <Route
                     path="/category/:slug"
@@ -64,13 +65,19 @@ export default function App() {
                     element={<ForgotPasswordPage />}
                   />
                   <Route
+                    path="/forgetpassword"
+                    element={<ForgotPasswordPage />}
+                  />
+                  <Route
                     path="/resetpassword/:token"
                     element={<ResetPasswordPage />}
                   />
 
                   <Route path="/dashboard/user" element={<PrivateRoute />}>
                     <Route index element={<UserProfilePage />} />
+                    <Route path="profile" element={<UserProfilePage />} />
                     <Route path="orders" element={<UserOrdersPage />} />
+                    <Route path="order" element={<UserOrdersPage />} />
                   </Route>
 
                   <Route path="/dashboard/admin" element={<AdminRoute />}>
@@ -80,6 +87,20 @@ export default function App() {
                       element={<AdminCategoriesPage />}
                     />
                     <Route path="products" element={<AdminProductsPage />} />
+                    <Route path="orders" element={<AdminOrdersPage />} />
+                    <Route path="users" element={<AdminUsersPage />} />
+                  </Route>
+
+                  <Route path="/adminDashboard" element={<AdminRoute />}>
+                    <Route index element={<AdminOverviewPage />} />
+                    <Route
+                      path="create-category"
+                      element={<AdminCategoriesPage />}
+                    />
+                    <Route
+                      path="create-product"
+                      element={<AdminProductsPage />}
+                    />
                     <Route path="orders" element={<AdminOrdersPage />} />
                     <Route path="users" element={<AdminUsersPage />} />
                   </Route>
